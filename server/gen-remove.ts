@@ -5,7 +5,7 @@ import { actionClient } from "@/lib/safe-action"
 import { checkImageProcessing } from "@/lib/check-processing"
 
 cloudinary.config({
-  cloud_name: "restyled",
+  cloud_name: "dsvohultm",
   api_key: process.env.CLOUDINARY_KEY,
   api_secret: process.env.CLOUDINARY_SECRET,
 })
@@ -19,12 +19,12 @@ export const genRemove = actionClient
   .schema(genRemoveSchema)
   .action(async ({ parsedInput: { prompt, activeImage } }) => {
     const parts = activeImage.split("/upload/")
-    //https://res.cloudinary.com/demo/image/upload/e_gen_remove:prompt_fork/docs/avocado-salad.jpg
+
     const removeUrl = `${parts[0]}/upload/e_gen_remove:${prompt}/${parts[1]}`
-    // Poll the URL to check if the image is processed
+    //checking if the image is processed
     let isProcessed = false
     const maxAttempts = 20
-    const delay = 1000 // 1 second
+    const delay = 1000 
     for (let attempt = 0; attempt < maxAttempts; attempt++) {
       isProcessed = await checkImageProcessing(removeUrl)
       if (isProcessed) {
@@ -34,7 +34,7 @@ export const genRemove = actionClient
     }
 
     if (!isProcessed) {
-      throw new Error("Image processing timed out")
+      throw new Error("You are a TOWEL try again")
     }
     console.log(removeUrl)
     return { success: removeUrl }

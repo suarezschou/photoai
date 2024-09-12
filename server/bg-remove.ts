@@ -5,7 +5,7 @@ import { actionClient } from "@/lib/safe-action"
 import { checkImageProcessing } from "@/lib/check-processing"
 
 cloudinary.config({
-  cloud_name: "restyled",
+  cloud_name: "dsvohultm",
   api_key: process.env.CLOUDINARY_KEY,
   api_secret: process.env.CLOUDINARY_SECRET,
 })
@@ -21,12 +21,12 @@ export const bgRemoval = actionClient
     const form = activeImage.split(format)
     const pngConvert = form[0] + "png"
     const parts = pngConvert.split("/upload/")
-    //https://res.cloudinary.com/demo/image/upload/e_gen_remove:prompt_fork/docs/avocado-salad.jpg
-    const bgUrl = `${parts[0]}/upload/e_background_removal/${parts[1]}`
-    // Poll the URL to check if the image is processed
+    const bgUrl = `${parts[0]}/upload/e_background_removal/e_grayscale${parts[1]}`
+
+    // checking if the image is processed
     let isProcessed = false
     const maxAttempts = 20
-    const delay = 1000 // 1 second
+    const delay = 1000 
     for (let attempt = 0; attempt < maxAttempts; attempt++) {
       isProcessed = await checkImageProcessing(bgUrl)
       if (isProcessed) {
@@ -36,7 +36,7 @@ export const bgRemoval = actionClient
     }
 
     if (!isProcessed) {
-      throw new Error("Image processing timed out")
+      throw new Error("You are a TOWEL try again")
     }
     console.log(bgUrl)
     return { success: bgUrl }

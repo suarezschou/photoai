@@ -49,7 +49,7 @@ export default function BgRemove() {
                 id: newLayerId,
                 url: res.data.success,
                 format: "png",
-                height: activeLayer.height,
+                height: activeLayer.height, 
                 width: activeLayer.width,
                 name: "genRemoved" + activeLayer.name,
                 publicId: activeLayer.publicId,
@@ -64,7 +64,7 @@ export default function BgRemove() {
           }}
           className="w-full mt-4"
         >
-          {generating ? "Removing..." : "Remove Background"}
+          {generating ? "Wingardium Leviosa..." : "Remove BG"}
         </Button>
       </PopoverContent>
     </Popover>

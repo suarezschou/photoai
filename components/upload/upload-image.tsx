@@ -40,6 +40,9 @@ export default function UploadImage() {
         })
         setActiveLayer(activeLayer.id)
         const res = await uploadImage({ image: formData })
+        
+        console.log(res)
+        
         if (res?.data?.success) {
           updateLayer({
             id: activeLayer.id,
@@ -73,12 +76,12 @@ export default function UploadImage() {
         <CardContent className="flex flex-col h-full items-center justify-center px-2 py-24  text-xs ">
           <input {...getInputProps()} type="text" />
           <div className="flex items-center flex-col justify-center gap-2">
-            <p className="text-muted-foreground text-5xl">
+            <p className="text-muted-foreground text-2xl">
               {isDragActive
                 ? "Drop your image here!"
-                : "Drag and drop an Image into this box"}
+                : "Start by uploading an image"}
             </p>
-            <p className="text-2xl text-muted-foreground">
+            <p className="text-muted-foreground">
               Supported formats .jpeg .png .webp .jpg
             </p>
           </div>
