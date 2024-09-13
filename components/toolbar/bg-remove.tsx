@@ -51,7 +51,7 @@ export default function BgRemove() {
                 format: "png",
                 height: activeLayer.height, 
                 width: activeLayer.width,
-                name: "genRemoved" + activeLayer.name,
+                name: "bgRemoved" + activeLayer.name,
                 publicId: activeLayer.publicId,
                 resourceType: "image",
               })

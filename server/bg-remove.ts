@@ -21,6 +21,7 @@ export const bgRemoval = actionClient
     const form = activeImage.split(format)
     const pngConvert = form[0] + "png"
     const parts = pngConvert.split("/upload/")
+    
     const bgUrl = `${parts[0]}/upload/e_background_removal/e_grayscale${parts[1]}`
 
     // checking if the image is processed
