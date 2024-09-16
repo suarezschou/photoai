@@ -3,9 +3,11 @@
 import { uploadImage } from "@/server/upload-image"
 import { useDropzone } from "react-dropzone"
 import { Card, CardContent } from "../ui/card"
+import { Button } from "../ui/button"
 import { cn } from "@/lib/utils"
 import { useImageStore } from "@/lib/image-store"
 import { useLayerStore } from "@/lib/layer-store"
+
 
 export default function UploadImage() {
   const setGenerating = useImageStore((state) => state.setGenerating)
@@ -21,7 +23,7 @@ export default function UploadImage() {
       "image/webp": [".webp"],
       "image/jpeg": [".jpeg"],
     },
-    onDrop: async (acceptFiles, fileRejections) => {
+    onDrop: async (acceptFiles) => {
       if (acceptFiles.length) {
         const formData = new FormData()
         formData.append("image", acceptFiles[0])
@@ -67,20 +69,21 @@ export default function UploadImage() {
   if (!activeLayer.url)
     return (
       <Card
+      {...getRootProps()}
         className={cn(
           " hover:cursor-pointer hover:bg-secondary hover:border-primary transition-all  ease-in-out ",
           `${isDragActive ? "animate-pulse border-primary bg-secondary" : ""}`
         )}
-        {...getRootProps()}
       >
         <CardContent className="flex flex-col h-full items-center justify-center px-2 py-24  text-xs ">
-          <input {...getInputProps()} type="text" />
+          <input {...getInputProps()} />
           <div className="flex items-center flex-col justify-center gap-2">
             <p className="text-muted-foreground text-2xl">
               {isDragActive
                 ? "Drop your image here!"
-                : "Start by uploading an image"}
+                : "Drag and drop or"}
             </p>
+            <Button>Click to upload</Button>
             <p className="text-muted-foreground">
               Supported formats .jpeg .png .webp .jpg
             </p>
